@@ -1,3 +1,9 @@
+import { TableTransactions } from '@/components/TableTransactions'
+
 export function Home() {
-  return <h1>Hello</h1>
+  return (
+    <section>
+      <TableTransactions transactions={[]} />
+    </section>
+  )
 }
