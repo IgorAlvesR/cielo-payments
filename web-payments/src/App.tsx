@@ -9,7 +9,7 @@ export function App() {
     <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
       <BrowserRouter>
         <Navbar />
-        <main className="px-12 mt-6">
+        <main className="mt-6 max-w-6xl my-0 mx-auto">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/metrics" element={<Metrics />} />
