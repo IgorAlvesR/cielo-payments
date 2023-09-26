@@ -1,6 +1,7 @@
 export enum StatusTransaction {
   PENDING = 'Pendente',
   APPROVED = 'Aprovada',
+  DENIED = 'Negada',
 }
 
 export interface Transaction {

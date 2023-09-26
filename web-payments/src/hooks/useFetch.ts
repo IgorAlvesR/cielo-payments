@@ -1,10 +1,11 @@
 import { getInstanceHttpClient } from '@/services/api'
+import { Transaction } from '@/types'
 
 import { useState, useEffect } from 'react'
 
 export default function useFetch(path: string) {
   let isMounted = true
-  const [data, setData] = useState(null)
+  const [data, setData] = useState<Transaction | unknown>(null)
   const [loading, setLoading] = useState<boolean>(true)
   const [error, setError] = useState<Error | null>(null)
 
