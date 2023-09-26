@@ -4,3 +4,4 @@
 - [x] - Configurar lib para testes.
 - [x] - Configurar o roteamento da aplicação.
 - [x] - Criar o menu de navegação juntamente com a funcionalidade de tema escuro.
+- [x] - Criar testes para o navbar.
