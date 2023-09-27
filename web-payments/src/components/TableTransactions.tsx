@@ -11,18 +11,22 @@ import { Transaction } from '@/types'
 
 interface TableTransactionsProps {
   transactions: Transaction[]
+  onClickRow: (transaction: Transaction) => void
 }
 
-function getColorStatus(status: string): string {
-  const colors: Record<string, string> = {
-    Aprovada: 'text-green-700',
-    Negada: 'text-red-500',
-    Pendente: 'text-yellow-500',
+export function TableTransactions({
+  transactions,
+  onClickRow,
+}: TableTransactionsProps) {
+  function getColorStatus(status: string): string {
+    const colors: Record<string, string> = {
+      Aprovada: 'text-green-700',
+      Negada: 'text-red-500',
+      Pendente: 'text-yellow-500',
+    }
+    return colors[status]
   }
-  return colors[status]
-}
 
-export function TableTransactions({ transactions }: TableTransactionsProps) {
   if (!transactions.length) {
     return (
       <div className="text-zinc-600 dark:text-zinc-200 p-6 shadow-sm border border-zinc-100 dark:border-none rounded-sm dark:bg-zinc-900">
@@ -49,6 +53,7 @@ export function TableTransactions({ transactions }: TableTransactionsProps) {
         <TableBody className="max-h-96 w-full  leading-8">
           {transactions.map((transaction) => (
             <TableRow
+              onClick={() => onClickRow(transaction)}
               key={transaction.id + transaction.terminal}
               className="cursor-pointer flex-1 flex justify-between sm:items-center flex-col items-center sm:flex-row"
             >
