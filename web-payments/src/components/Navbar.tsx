@@ -4,7 +4,7 @@ import { ModeToggle } from './mode-toggle'
 
 export function Navbar() {
   return (
-    <header className="fixed inset-x-0 top-0 w-full   z-10 flex sm:h-16 px-12 bg-blue-200 justify-center dark:bg-blue-300 dark:text-zinc-800">
+    <header className="fixed inset-x-0 top-0 w-full z-10 flex sm:h-16 px-12 bg-blue-200 justify-center dark:bg-blue-300 dark:text-zinc-800">
       <div className="max-w-6xl flex flex-col items-center justify-between sm:flex-row flex-1">
         <Link to="/">
           <Logo />
