@@ -12,3 +12,9 @@
 - [x] - Cria arquitetura para utilização da api.
 - [x] - Permite visualizar detalhes da transação no modal ao clicar na linha da tabela.
 - [x] - Ajusta estrutura de roteamento da aplicação.
+
+## 🚀 Tarefas do dia 27/09/2023
+- [x] - Cria teste para tabela de transações.
+- [x] - Cria paginação para a tabela.
+- [x] - Refatora alguns componentes para melhorar legibilidade.
+- [x] - Cria um card para visualizar resumo das transações.
