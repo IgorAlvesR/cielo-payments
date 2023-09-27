@@ -8,7 +8,7 @@ export function App() {
     <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
       <BrowserRouter>
         <Navbar />
-        <main className="mt-6 max-w-6xl my-0 mx-auto px-12">
+        <main className="mt-[286px] sm:mt-24 max-w-6xl my-0 mx-auto px-12">
           <Router />
         </main>
       </BrowserRouter>
