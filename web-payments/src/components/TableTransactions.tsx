@@ -40,9 +40,15 @@ export function TableTransactions({
       <h1 className="text-lg font-semibold text-zinc-800 dark:text-zinc-50 pb-4 pt-2 px-4">
         Histórico de transações
       </h1>
-      <Table className="dark:text-zinc-50 flex w-full flex-col px-4 text-zinc-700 font-medium">
+      <Table
+        aria-label="Tabela de histórico de transações"
+        className="dark:text-zinc-50 flex w-full flex-col px-4 text-zinc-700 font-medium"
+      >
         <TableHeader className="flex-1 flex  justify-between">
-          <TableRow className="flex-1 flex justify-between sm:items-center flex-col sm:flex-row">
+          <TableRow
+            data-testid="table-transaction-header-row"
+            className="flex-1 flex justify-between sm:items-center flex-col sm:flex-row"
+          >
             <TableHead className="flex-1">Data</TableHead>
             <TableHead className="flex-1">Tipo de pagamento</TableHead>
             <TableHead className="flex-1">Valor bruto</TableHead>
@@ -53,6 +59,7 @@ export function TableTransactions({
         <TableBody className="max-h-96 w-full  leading-8">
           {transactions.map((transaction) => (
             <TableRow
+              data-testid="table-transaction-row"
               onClick={() => onClickRow(transaction)}
               key={transaction.id + transaction.terminal}
               className="cursor-pointer flex-1 flex justify-between sm:items-center flex-col items-center sm:flex-row"
