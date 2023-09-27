@@ -17,9 +17,7 @@ export type getPaginationResponse = {
   }
 }
 
-export async function getTransactions(): Promise<
-  getTransactionResponse | Error
-> {
+export async function getTransactions(): Promise<getTransactionResponse> {
   try {
     const { data } = await client.get('/items')
     return {
@@ -34,7 +32,7 @@ export async function getTransactions(): Promise<
   }
 }
 
-export async function getPagination(): Promise<getPaginationResponse | Error> {
+export async function getPagination(): Promise<getPaginationResponse> {
   try {
     const { data } = await client.get('/pagination')
     return {
