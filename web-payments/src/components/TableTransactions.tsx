@@ -8,14 +8,17 @@ import {
 } from '@/components/ui/table'
 import { convertBRL } from '@/lib/convert'
 import { Transaction } from '@/types'
+import { ReactNode } from 'react'
 
 interface TableTransactionsProps {
   transactions: Transaction[]
+  children?: ReactNode
   onClickRow: (transaction: Transaction) => void
 }
 
 export function TableTransactions({
   transactions,
+  children,
   onClickRow,
 }: TableTransactionsProps) {
   function getColorStatus(status: string): string {
@@ -89,6 +92,8 @@ export function TableTransactions({
           ))}
         </TableBody>
       </Table>
+
+      {children}
     </div>
   )
 }

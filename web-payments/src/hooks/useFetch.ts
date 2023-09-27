@@ -1,20 +1,17 @@
-import { getInstanceHttpClient } from '@/services/api'
-import { Transaction } from '@/types'
-
+import path from 'path'
 import { useState, useEffect } from 'react'
 
-export default function useFetch(path: string) {
+export default function useFetch(serviceFn: () => unknown) {
   let isMounted = true
-  const [data, setData] = useState<Transaction | unknown>(null)
+  const [data, setData] = useState<unknown | null>(null)
   const [loading, setLoading] = useState<boolean>(true)
   const [error, setError] = useState<Error | null>(null)
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const client = getInstanceHttpClient()
-        const response = await client.get(path)
-        setData(response.data)
+        const response = await serviceFn()
+        setData(response)
         setLoading(false)
       } catch (error) {
         if (error instanceof Error) {

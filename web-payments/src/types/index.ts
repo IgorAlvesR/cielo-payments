@@ -16,7 +16,7 @@ export interface Transaction {
   truncatedCardNumber: string
   grossAmount: number
   netAmount: number
-  terminal: number
+  terminal: string
   administrationFee: number
   channelCode: number
   channel: string
@@ -31,4 +31,13 @@ export interface routerType {
   title: string
   path: string
   element: JSX.Element
+}
+
+export interface Pagination {
+  pageNumber: number
+  pageSize: number
+  totalElements: number
+  numPages: number
+  lastPage: boolean
+  firstPage: boolean
 }
