@@ -1,3 +1,4 @@
+import { CardSummary } from '@/components/CardSummary'
 import { ModalTransactionDetails } from '@/components/ModalTransactionDetails'
 import { Pagination } from '@/components/Paginations'
 import { SkeletonPagination } from '@/components/SkeletonPagination'
@@ -7,6 +8,8 @@ import useFetch from '@/hooks/useFetch'
 import {
   getPagination,
   getPaginationResponse,
+  getSummary,
+  getSummaryResponse,
   getTransactionResponse,
   getTransactions,
 } from '@/services/transactions'
@@ -19,6 +22,7 @@ export function Home() {
 
   const transactionsResponse = useFetch(getTransactions)
   const paginationResponse = useFetch(getPagination)
+  const transactionSummaryResponse = useFetch(getSummary)
 
   const transactionsTransformed = transactionsResponse.data
     ? transformTransactionResponseFetch(transactionsResponse.data)
@@ -26,6 +30,10 @@ export function Home() {
 
   const paginatioonTransformed = paginationResponse.data
     ? transformPaginationResponseFetch(paginationResponse.data)
+    : null
+
+  const transactionSummaryTransformed = transactionSummaryResponse.data
+    ? transformSummaryResponseFetch(transactionSummaryResponse.data)
     : null
 
   function transformTransactionResponseFetch(data: unknown) {
@@ -36,6 +44,11 @@ export function Home() {
   function transformPaginationResponseFetch(data: unknown) {
     const response = data as getPaginationResponse
     return response.data.pagination
+  }
+
+  function transformSummaryResponseFetch(data: unknown) {
+    const response = data as getSummaryResponse
+    return response.data.summary
   }
 
   function openTransactionModalDetails(transaction: Transaction) {
@@ -67,7 +80,13 @@ export function Home() {
 
   if (!transactionsResponse.loading && !!transactionsTransformed?.length) {
     return (
-      <section>
+      <section className="space-y-4">
+        {transactionSummaryTransformed && (
+          <CardSummary
+            data={transactionSummaryTransformed}
+            loading={transactionSummaryResponse.loading}
+          />
+        )}
         <TableTransactions
           transactions={transactionsTransformed}
           onClickRow={openTransactionModalDetails}

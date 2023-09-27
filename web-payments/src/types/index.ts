@@ -41,3 +41,12 @@ export interface Pagination {
   lastPage: boolean
   firstPage: boolean
 }
+
+export interface Summary {
+  totalQuantity: number
+  totalAmount: number
+  totalNetAmount: number
+  totalAverageAmount: number
+  initialDate: string
+  finalDate: string
+}
