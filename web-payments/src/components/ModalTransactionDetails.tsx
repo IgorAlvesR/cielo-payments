@@ -42,59 +42,46 @@ export function ModalTransactionDetails({
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Detalhes da transação</DialogTitle>
-
           <DialogDescription>
             Veja mais informações sobre a transação realizada
           </DialogDescription>
         </DialogHeader>
 
-        <div className="overflow-y-auto max-h-[500px]  bg-zinc-100 px-4 rounded-md mt-8 p-4 divide-y divide-y-zinc-300 dark:divide-zinc-700 space-y-6 dark:bg-zinc-800 dark:text-zinc-50">
-          <ModalDetail label="Canal" value={transaction.channel} />
-
-          <ModalDetail
-            label="ID do comerciante:"
-            value={transaction.merchantId}
-          />
-
-          <ModalDetail
-            label="Ordem de pagamento:"
-            value={transaction.paymentNode}
-          />
-
-          <ModalDetail label="Cnpj Raiz:" value={transaction.cnpjRoot} />
-
-          <ModalDetail
-            label="Código de autorização:"
-            value={transaction.authorizationCode}
-          />
-
-          <ModalDetail
-            label="Nº parcial do cartão:"
-            value={transaction.truncatedCardNumber}
-          />
-
-          <ModalDetail
-            label="Taxa de administração:"
-            value={transaction.administrationFee}
-          />
-
-          <ModalDetail label="Canal:" value={transaction.channel} />
-
-          <ModalDetail
-            label="Quantidade mínima de MDRA:"
-            value={transaction.minimumMDRAmmount}
-          />
-
-          <ModalDetail
-            label="Valor do imposto mdr"
-            value={convertToCurrencyBRL(transaction.mdrTaxAmount)}
-          />
-
-          <ModalDetail
-            label=" Valor da taxa mdr"
-            value={convertToCurrencyBRL(transaction.mdrFeeAmount)}
-          />
-        </div>
+        <ModalDetail label="Canal:" value={transaction.channel} />
+        <ModalDetail
+          label="ID do comerciante:"
+          value={transaction.merchantId}
+        />
+        <ModalDetail
+          label="Ordem de pagamento:"
+          value={transaction.paymentNode}
+        />
+        <ModalDetail label="Cnpj Raiz:" value={transaction.cnpjRoot} />
+        <ModalDetail
+          label="Código de autorização:"
+          value={transaction.authorizationCode}
+        />
+        <ModalDetail
+          label="Nº parcial do cartão:"
+          value={transaction.truncatedCardNumber}
+        />
+        <ModalDetail
+          label="Taxa de administração:"
+          value={transaction.administrationFee}
+        />
+        <ModalDetail label="Canal:" value={transaction.channel} />
+        <ModalDetail
+          label="Quantidade mínima de MDRA:"
+          value={transaction.minimumMDRAmmount}
+        />
+        <ModalDetail
+          label="Valor do imposto MDR:"
+          value={convertToCurrencyBRL(transaction.mdrTaxAmount)}
+        />
+        <ModalDetail
+          label=" Valor da taxa MDR:"
+          value={convertToCurrencyBRL(transaction.mdrFeeAmount)}
+        />
       </DialogContent>
     </Dialog>
   )
