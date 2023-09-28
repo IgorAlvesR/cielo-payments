@@ -86,7 +86,7 @@ export function Metrics() {
     : null
 
   return (
-    <div className="rounded-sm bg-white shadow-sm border dark:border-none dark:bg-zinc-800  py-8 px-12 flex justify-center gap-8 ">
+    <div className="rounded-sm bg-white shadow-sm border dark:border-none dark:bg-zinc-800  py-12 px-8 flex justify-center gap-6 flex-col lg:flex-row ">
       <div className="flex-1 shadow-sm border border-zinc-50 p-4 bg-zinc-100  rounded-sm flex justify-center items-center dark:bg-white dark:border-none ">
         <PieChartBrand
           data={brandsCount}
