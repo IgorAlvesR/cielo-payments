@@ -47,7 +47,7 @@ cd cielo-payments/web-payments
 ```
 npm install
 ```
-4 Crie uma arquivo `.env` que contém a seguinte env
+4 Crie uma arquivo `.env` no diretório `cielo-payments/web-payments` que contém a seguinte env
 ```
 VITE_API_URL=(endereço da api, ex: http://localhost:3000)
 ```
