@@ -57,3 +57,9 @@ export interface BrandsCount {
   eloCount: number
   hipercardCount: number
 }
+
+export interface StatusCount {
+  approvedCount: number
+  deniedCount: number
+  pending: number
+}
