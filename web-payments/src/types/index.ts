@@ -50,3 +50,10 @@ export interface Summary {
   initialDate: string
   finalDate: string
 }
+
+export interface BrandsCount {
+  mastercardCount: number
+  visaCount: number
+  eloCount: number
+  hipercardCount: number
+}
