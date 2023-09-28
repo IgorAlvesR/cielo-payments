@@ -1,12 +1,18 @@
-# CIELO PAGAMENTOS
+# CIELO HISTÓRICO DE TRANSAÇÕES
 
 ![GitHub code size](https://img.shields.io/github/languages/code-size/igoralvesr/cielo-payments)
 
 > Esta é uma aplicação desenvolvida para o bootcamp da Cielo, com intuito de comprovar conhecimentos em frontend.
 
-<div style="width:100%; display:flex; align-items:center; gap:16px">
-    <!-- <img src="./public/ada-store.png" width="80%"> -->
+<div style="width:100%; display:flex; align-items:center; gap:16px; flex-direction: column;">    
+    <img src="./web-payments/public/images/img01.png" width="80%" />            
 </div>
+
+## Detalhes da aplicação
+
+- O projeto consiste em duas visões, uma para apresentar o histórico de transações em forma de tabela, na qual 
+pode ser vista cada transação em detalhes. E a outra visão que mostra informações sobre o histórico de transações em forma
+de gráficos, para que possa facilitar a tomada de decisão.
 
 ## Tecnologias utilizadas
 
@@ -16,7 +22,14 @@
 - React Icons (Biblioteca para ícones)
 
 
-## 💻 Como usar o projeto
+## Padrões abordados
+
+- Foi escolhido o uso de uma biblioteca que utiliza a composição de componentes,
+ utilizando esse padrão o código fica mais legível e de fácil manutenção. (Lib: Shadcn-ui)
+
+- Para acessar a api foi utilizado o padrão criacional `Singleton` que permite ter apenas uma instancia do objeto.
+
+## 💻 Como rodar o projeto
 Para utilizar e testar o projeto, esteja em um computador com Node Js instalado e siga as
 etapas abaixo:
 
@@ -34,27 +47,31 @@ cd cielo-payments/web-payments
 ```
 npm install
 ```
-4 Acesse o diretório que contém a api
+4 Crie uma arquivo `.env` que contém a seguinte env
+```
+VITE_API_URL=(endereço da api, ex: http://localhost:3000)
+```
+5 Acesse o diretório que contém a api
 ```
 cd cielo-payments/api-payments
 ```
-5 Instale as dependências necessárias com o comando
+6 Instale as dependências necessárias com o comando
 ```
 npm install
 ```
-6 Rode o seguite comando para subir a api no diretório `cielo-payments/api-payments`
+7 Rode o seguite comando para subir a api no diretório `cielo-payments/api-payments`
 ```
 npm start
 ```
-7 Rode o seguinte comando para subir a UI do projeto no diretório `cielo-payments/web-payments`
+8 Rode o seguinte comando para subir a UI do projeto no diretório `cielo-payments/web-payments`
 ```
 npm run dev
 ```
-8 Acesse o projeto
+9 Acesse o projeto
 ```
 http://localhost:5173
 ```
-9 Para rodar os testes unitários do projeto execute o seguinte comando no diretório `cielo-payments/web-payments`
+10 Para rodar os testes unitários do projeto execute o seguinte comando no diretório `cielo-payments/web-payments`
 ```
 npm run test
 ```

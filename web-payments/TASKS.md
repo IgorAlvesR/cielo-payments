@@ -18,3 +18,4 @@
 - [x] - Cria paginação para a tabela.
 - [x] - Refatora alguns componentes para melhorar legibilidade.
 - [x] - Cria um card para visualizar resumo das transações.
+- [x] - Cria um gráfico de pizza para visualizar a quantidade de cada bandeira utilizada.
