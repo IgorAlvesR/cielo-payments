@@ -6,7 +6,7 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table'
-import { convertBRL } from '@/lib/convert'
+import { convertToCurrencyBRL } from '@/lib/convert'
 import { Transaction } from '@/types'
 import { ReactNode } from 'react'
 import { SkeletonTable } from './SkeletonTable'
@@ -83,11 +83,11 @@ export function TableTransactions({
               </TableCell>
 
               <TableCell className="flex-1">
-                {convertBRL(transaction.grossAmount)}
+                {convertToCurrencyBRL(transaction.grossAmount)}
               </TableCell>
 
               <TableCell className="flex-1">
-                {convertBRL(transaction.netAmount)}
+                {convertToCurrencyBRL(transaction.netAmount)}
               </TableCell>
 
               <TableCell

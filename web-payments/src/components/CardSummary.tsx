@@ -6,7 +6,7 @@ import {
   CardContent,
   CardHeader,
 } from './ui/card'
-import { convertBRL } from '@/lib/convert'
+import { convertToCurrencyBRL } from '@/lib/convert'
 import { CardSkeleton } from './CardSkeleton'
 
 interface CardSummaryProps {
@@ -36,7 +36,7 @@ export function CardSummary({ data, loading }: CardSummaryProps) {
           <div className="flex items-center justify-between border-b border-b-zinc-100 dark:border-b-zinc-800">
             <p className="text-zinc-500 text-md flex flex-col ">
               <span className="font-semibold text-green-600">
-                {convertBRL(data.totalAmount)}
+                {convertToCurrencyBRL(data.totalAmount)}
               </span>
               <span className="text-xs text-zinc-500 dark:text-zinc-200">
                 Valor total
@@ -56,7 +56,7 @@ export function CardSummary({ data, loading }: CardSummaryProps) {
           <div className="flex items-center justify-between border-b border-b-zinc-100 dark:border-b-zinc-800">
             <p className="text-zinc-500 text-md flex flex-col">
               <span className="font-semibold text-green-600 ">
-                {convertBRL(data.totalNetAmount)}
+                {convertToCurrencyBRL(data.totalNetAmount)}
               </span>
               <span className="text-xs text-zinc-500 dark:text-zinc-200">
                 Valor Líquido
@@ -65,7 +65,7 @@ export function CardSummary({ data, loading }: CardSummaryProps) {
 
             <p className="text-zinc-500 text-md flex flex-col text-end">
               <span className="font-semibold text-green-600">
-                {convertBRL(data.totalAverageAmount)}
+                {convertToCurrencyBRL(data.totalAverageAmount)}
               </span>
               <span className="text-xs text-zinc-500 dark:text-zinc-200">
                 Valor médio

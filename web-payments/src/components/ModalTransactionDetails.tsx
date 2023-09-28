@@ -5,7 +5,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog'
-import { convertBRL } from '@/lib/convert'
+import { convertToCurrencyBRL } from '@/lib/convert'
 import { Transaction } from '@/types'
 
 interface ModalTransactionDetailsProps {
@@ -87,12 +87,12 @@ export function ModalTransactionDetails({
 
           <ModalDetail
             label="Valor do imposto mdr"
-            value={convertBRL(transaction.mdrTaxAmount)}
+            value={convertToCurrencyBRL(transaction.mdrTaxAmount)}
           />
 
           <ModalDetail
             label=" Valor da taxa mdr"
-            value={convertBRL(transaction.mdrFeeAmount)}
+            value={convertToCurrencyBRL(transaction.mdrFeeAmount)}
           />
         </div>
       </DialogContent>
