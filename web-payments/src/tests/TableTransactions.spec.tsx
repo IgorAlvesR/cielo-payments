@@ -1,7 +1,5 @@
 import { render, screen } from '@testing-library/react'
 import '@testing-library/jest-dom'
-import { ThemeProvider } from '@/components/theme-provider'
-import { BrowserRouter } from 'react-router-dom'
 import { TableTransactions } from '@/components/TableTransactions'
 import { StatusTransaction, Transaction } from '@/types'
 
@@ -53,11 +51,7 @@ function renderComponent() {
     },
   ]
   render(
-    <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
-      <BrowserRouter>
-        <TableTransactions transactions={transactions} onClickRow={() => {}} />
-      </BrowserRouter>
-    </ThemeProvider>,
+    <TableTransactions transactions={transactions} onClickRow={() => {}} />,
   )
 }
 
