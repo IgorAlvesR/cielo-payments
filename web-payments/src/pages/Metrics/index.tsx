@@ -45,11 +45,10 @@ export function Metrics() {
     )
   }
 
-  let brandsCount
-  if (transactionResponse.data) {
-    const response = transactionResponse.data as getTransactionResponse
-    brandsCount = getBrandsFilter(response.data.transactions)
-  }
+  const response = transactionResponse.data as getTransactionResponse
+  const brandsCount = transactionResponse?.data
+    ? getBrandsFilter(response.data.transactions)
+    : null
 
   return (
     <div className="rounded-sm bg-white shadow-sm border dark:border-none dark:bg-zinc-800  py-8 px-12 flex flex-col gap-8 ">

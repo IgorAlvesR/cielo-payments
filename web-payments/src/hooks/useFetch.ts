@@ -1,4 +1,3 @@
-import path from 'path'
 import { useState, useEffect } from 'react'
 
 export default function useFetch(serviceFn: () => unknown) {
@@ -29,7 +28,7 @@ export default function useFetch(serviceFn: () => unknown) {
     return () => {
       isMounted = false
     }
-  }, [path])
+  }, [])
 
   return { data, loading, error }
 }

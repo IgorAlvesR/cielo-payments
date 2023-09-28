@@ -9,16 +9,19 @@ import {
 import { convertBRL } from '@/lib/convert'
 import { Transaction } from '@/types'
 import { ReactNode } from 'react'
+import { SkeletonTable } from './SkeletonTable'
 
 interface TableTransactionsProps {
-  transactions: Transaction[]
+  transactions?: Transaction[] | null
   children?: ReactNode
+  loading?: boolean
   onClickRow: (transaction: Transaction) => void
 }
 
 export function TableTransactions({
   transactions,
   children,
+  loading,
   onClickRow,
 }: TableTransactionsProps) {
   function getColorStatus(status: string): string {
@@ -30,7 +33,11 @@ export function TableTransactions({
     return colors[status]
   }
 
-  if (!transactions.length) {
+  if (loading) {
+    return <SkeletonTable />
+  }
+
+  if (!transactions?.length) {
     return (
       <div className="text-zinc-600 dark:text-zinc-200 p-6 shadow-sm border border-zinc-100 dark:border-none rounded-sm dark:bg-zinc-900">
         Não há transações registradas.

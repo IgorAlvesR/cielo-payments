@@ -2,7 +2,6 @@ import { CardSummary } from '@/components/CardSummary'
 import { ModalTransactionDetails } from '@/components/ModalTransactionDetails'
 import { Pagination } from '@/components/Paginations'
 import { SkeletonPagination } from '@/components/SkeletonPagination'
-import { SkeletonTable } from '@/components/SkeletonTable'
 import { TableTransactions } from '@/components/TableTransactions'
 import useFetch from '@/hooks/useFetch'
 import {
@@ -66,10 +65,6 @@ export function Home() {
     return null
   }
 
-  if (transactionsResponse.loading) {
-    return <SkeletonTable />
-  }
-
   if (transactionsResponse.error) {
     return (
       <p className="text-center text-zinc-600 dark:text-zinc-300">
@@ -78,30 +73,26 @@ export function Home() {
     )
   }
 
-  if (!transactionsResponse.loading && !!transactionsTransformed?.length) {
-    return (
-      <section className="space-y-4">
-        {transactionSummaryTransformed && (
-          <CardSummary
-            data={transactionSummaryTransformed}
-            loading={transactionSummaryResponse.loading}
-          />
-        )}
-        <TableTransactions
-          transactions={transactionsTransformed}
-          onClickRow={openTransactionModalDetails}
-        >
-          <PaginationRoot />
-        </TableTransactions>
-
-        {transactionDetails && (
-          <ModalTransactionDetails
-            open={openModalTransaction}
-            transaction={transactionDetails}
-            setOpen={(current: boolean) => setOpenModalTransaction(!current)}
-          />
-        )}
-      </section>
-    )
-  }
+  return (
+    <section className="space-y-12">
+      <CardSummary
+        data={transactionSummaryTransformed}
+        loading={transactionSummaryResponse.loading}
+      />
+      <TableTransactions
+        loading={transactionSummaryResponse.loading}
+        transactions={transactionsTransformed}
+        onClickRow={openTransactionModalDetails}
+      >
+        <PaginationRoot />
+      </TableTransactions>
+      {transactionDetails && (
+        <ModalTransactionDetails
+          open={openModalTransaction}
+          transaction={transactionDetails}
+          setOpen={(current: boolean) => setOpenModalTransaction(!current)}
+        />
+      )}
+    </section>
+  )
 }

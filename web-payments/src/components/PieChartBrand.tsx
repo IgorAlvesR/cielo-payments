@@ -7,7 +7,7 @@ ChartJS.register(ArcElement, Tooltip, Legend)
 
 interface PieChartBrandProps {
   loading: boolean
-  data?: BrandsCount
+  data?: BrandsCount | null
 }
 
 export function PieChartBrand({ loading, data }: PieChartBrandProps) {

@@ -10,7 +10,7 @@ import { convertBRL } from '@/lib/convert'
 import { CardSkeleton } from './CardSkeleton'
 
 interface CardSummaryProps {
-  data: Summary
+  data?: Summary | null
   loading: boolean
 }
 
@@ -18,6 +18,11 @@ export function CardSummary({ data, loading }: CardSummaryProps) {
   if (loading) {
     return <CardSkeleton />
   }
+
+  if (!data) {
+    return null
+  }
+
   return (
     <Card className="sm:max-w-sm w-full dark:bg-zinc-900">
       <CardHeader>
