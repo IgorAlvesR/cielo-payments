@@ -6,7 +6,10 @@ interface PaginationProps {
 
 export function Pagination({ data }: PaginationProps) {
   return (
-    <div className="flex gap-3 justify-center mt-12">
+    <div
+      data-testid="pagination-test"
+      className="flex gap-3 justify-center mt-12"
+    >
       {data.pageNumber > 1 && (
         <span className="font-semibold bg-zinc-100 px-3 py-2 rounded-sm text-zinc-500  cursor-pointer dark:bg-zinc-700 dark:text-zinc-50 hover:bg-zinc-200 dark:hover:bg-zinc-800">
           {data.pageNumber - 1}
