@@ -24,11 +24,11 @@ export function CardSummary({ data, loading }: CardSummaryProps) {
   }
 
   return (
-    <Card className="bg-background sm:max-w-sm w-full dark:bg-zinc-900">
+    <Card className="bg-background sm:max-w-sm w-full dark:bg-zinc-900 shadow-none rounded-sm">
       <CardHeader>
         <CardTitle>Resumo das transações</CardTitle>
         <CardDescription>
-          nesse card você tem um resumo geral das transações do período
+          Nesse card você tem um resumo geral das transações do período
         </CardDescription>
       </CardHeader>
       <CardContent>
