@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "json-server --watch transactions.json"    
+    "start": "json-server --delay 1000 --watch --no-cors transactions.json"    
   },
   "author": "",
   "license": "ISC",
