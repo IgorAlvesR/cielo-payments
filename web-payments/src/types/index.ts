@@ -55,6 +55,6 @@ export type CardBrandsReport = {
   [key: string]: number
 }
 
-export type CardStatusReport = {
+export type StatusReport = {
   [key: string]: number
 }

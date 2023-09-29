@@ -1,13 +1,19 @@
 import { PieChartBrand } from '@/components/PieChartBrand'
 import { PieChartStatus } from '@/components/PieChartStatus'
+import { useTheme } from '@/components/ThemeProvider'
 import useFetch from '@/hooks/useFetch'
 import {
   getTransactionResponse,
   getTransactions,
 } from '@/services/transactions'
-import { CardBrandsReport, CardStatusReport, Transaction } from '@/types'
+import { CardBrandsReport, StatusReport, Transaction } from '@/types'
 
 export function Metrics() {
+  const { theme } = useTheme()
+  const labelColorPieChart = theme === 'dark' ? '#fff' : '#000'
+
+  const transactionResponse = useFetch(getTransactions)
+
   function getBrandsFilter(transactions: Transaction[]) {
     const totalizers: CardBrandsReport = {}
 
@@ -22,7 +28,7 @@ export function Metrics() {
   }
 
   function getStatusFilter(transactions: Transaction[]) {
-    const totalizers: CardStatusReport = {}
+    const totalizers: StatusReport = {}
 
     transactions.forEach((transaction) => {
       if (!totalizers[transaction.status]) {
@@ -34,13 +40,11 @@ export function Metrics() {
     return totalizers
   }
 
-  const transactionResponse = useFetch(getTransactions)
-
   if (transactionResponse.error) {
     return (
-      <div className="text-zinc-600 dark:text-zinc-200 p-6 shadow-sm border border-zinc-100 dark:border-none rounded-sm dark:bg-zinc-900">
-        Não há transações registradas.
-      </div>
+      <p className="text-center text-zinc-600 dark:text-zinc-300">
+        Não foi possível carregar o histórico de transações.
+      </p>
     )
   }
 
@@ -50,24 +54,36 @@ export function Metrics() {
     ? getBrandsFilter(response.data.transactions)
     : null
 
-  const cardStatusReport = transactionResponse.data
+  const statusReport = transactionResponse.data
     ? getStatusFilter(response.data.transactions)
     : null
 
   return (
-    <div className="rounded-sm bg-white shadow-sm border dark:border-none dark:bg-zinc-800  py-12 px-4 sm:px-8 flex justify-center gap-6 flex-col lg:flex-row ">
-      <div className="flex-1 shadow-sm border border-zinc-50 p-4 bg-zinc-100  rounded-sm flex justify-center items-center dark:bg-white dark:border-none ">
-        <PieChartBrand
-          data={cardBrandsReport}
-          loading={transactionResponse.loading}
-        />
-      </div>
+    <div className="border pb-12 pt-4">
+      <h1 className="px-4  sm:px-8 text-md sm:text-lg font-semibold">
+        Análise do histórico de transações
+      </h1>
+      <p className="px-4 sm:px-8 text-xs text-zinc-400 mb-8">
+        Nessa visão você tem acesso as informações condensadas do histórico de
+        transações.
+      </p>
 
-      <div className="flex-1 shadow-sm border border-zinc-50 p-4 bg-zinc-100  rounded-sm flex justify-center items-center dark:bg-white dark:border-none ">
-        <PieChartStatus
-          data={cardStatusReport}
-          loading={transactionResponse.loading}
-        />
+      <div className="rounded-sm dark:border-none  px-4 sm:px-8 flex justify-center gap-6 flex-col lg:flex-row ">
+        <div className="flex-1 shadow-sm border border-zinc-50 bg-zinc-100 rounded-sm flex justify-center items-center dark:bg-zinc-800 dark:border-none">
+          <PieChartBrand
+            data={cardBrandsReport}
+            loading={transactionResponse.loading}
+            labelColor={labelColorPieChart}
+          />
+        </div>
+
+        <div className="flex-1 shadow-sm border border-zinc-50 p-4 bg-zinc-100  rounded-sm flex justify-center items-center dark:bg-zinc-800 dark:border-none ">
+          <PieChartStatus
+            data={statusReport}
+            loading={transactionResponse.loading}
+            labelColor={labelColorPieChart}
+          />
+        </div>
       </div>
     </div>
   )

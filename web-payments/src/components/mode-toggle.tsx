@@ -10,7 +10,7 @@ export function ModeToggle() {
   return (
     <Button
       data-testid="button-theme"
-      className="border border-zinc-800 bg-zinc-100 dark:bg-zinc-100 hover:bg-zinc-300 dark:hover:bg-zinc-300 dark:text-zinc-800"
+      className="dark:border dark:border-zinc-900 dark:hover:bg-zinc-900"
       variant="outline"
       onClick={() => setTheme(isDark ? 'light' : 'dark')}
     >

@@ -18,21 +18,21 @@ interface TableTransactionsProps {
   onClickRow: (transaction: Transaction) => void
 }
 
+function getColorStatus(status: string): string {
+  const colors: Record<string, string> = {
+    Aprovada: 'text-green-600',
+    Negada: 'text-red-500',
+    Pendente: 'text-yellow-500',
+  }
+  return colors[status]
+}
+
 export function TableTransactions({
   transactions,
   children,
   loading,
   onClickRow,
 }: TableTransactionsProps) {
-  function getColorStatus(status: string): string {
-    const colors: Record<string, string> = {
-      Aprovada: 'text-green-700',
-      Negada: 'text-red-500',
-      Pendente: 'text-yellow-500',
-    }
-    return colors[status]
-  }
-
   if (loading) {
     return <SkeletonTable />
   }
@@ -91,7 +91,9 @@ export function TableTransactions({
               </TableCell>
 
               <TableCell
-                className={`flex-1 ${getColorStatus(transaction.status)}`}
+                className={`flex-1 font-semibold ${getColorStatus(
+                  transaction.status,
+                )}`}
               >
                 {transaction.status}
               </TableCell>

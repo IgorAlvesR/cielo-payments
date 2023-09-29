@@ -55,7 +55,7 @@ export function Home() {
     setOpenModalTransaction(true)
   }
 
-  const PaginationRoot = () => {
+  const PaginationContainer = () => {
     if (paginationResponse.loading) {
       return <SkeletonPagination />
     }
@@ -74,7 +74,7 @@ export function Home() {
   }
 
   return (
-    <section className="space-y-12">
+    <section className="space-y-12 mt-44 sm:mt-auto">
       <CardSummary
         data={transactionSummaryTransformed}
         loading={transactionSummaryResponse.loading}
@@ -84,7 +84,7 @@ export function Home() {
         transactions={transactionsTransformed}
         onClickRow={openTransactionModalDetails}
       >
-        <PaginationRoot />
+        <PaginationContainer />
       </TableTransactions>
       {transactionDetails && (
         <ModalTransactionDetails

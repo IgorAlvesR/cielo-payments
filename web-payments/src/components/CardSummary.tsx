@@ -24,7 +24,7 @@ export function CardSummary({ data, loading }: CardSummaryProps) {
   }
 
   return (
-    <Card className="sm:max-w-sm w-full dark:bg-zinc-900">
+    <Card className="bg-background sm:max-w-sm w-full dark:bg-zinc-900">
       <CardHeader>
         <CardTitle>Resumo das transações</CardTitle>
         <CardDescription>
