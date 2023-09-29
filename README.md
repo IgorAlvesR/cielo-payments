@@ -8,26 +8,35 @@
     <img src="./web-payments/public/images/img01.png" width="80%" />            
 </div>
 
-## Detalhes da aplicação
+## 📄 Detalhes da aplicação
 
 - O projeto consiste em duas visões, uma para apresentar o histórico de transações em forma de tabela, na qual 
 pode ser vista cada transação em detalhes. E a outra visão que mostra informações sobre o histórico de transações em forma
 de gráficos, para que possa facilitar a tomada de decisão.
 
-## Tecnologias utilizadas
+## Documentação das atividades
+- No diretório `cielo-payments/web-payments` existe um arquivo `TASKS.md` no qual possui
+todas as atividades realizadas em cada dia de desenvolvimento do projeto.
+
+## 👨‍💻 Tecnologias utilizadas
 
 - Tailwindcss (Ferramenta para produtividade na estilização)
 - Shadcn/UI (Lib de components para melhorar a produtividade)
 - React
 - React Icons (Biblioteca para ícones)
 
-
-## Padrões abordados
+## 💡 Padrões abordados
 
 - Foi escolhido o uso de uma biblioteca que utiliza a composição de componentes,
  utilizando esse padrão o código fica mais legível e de fácil manutenção. (Lib: Shadcn-ui)
 
 - Para acessar a api foi utilizado o padrão criacional `Singleton` que permite ter apenas uma instancia do objeto.
+
+## 🚀 Melhorias futuras
+- [ ] - Inserir um mecanismo de cache.
+- [ ] - Criar um fluxo de tratamento de erros genérico.
+- [ ] - Adicionar mais gráficos na visão de métricas.
+- [ ] - Implementar testes e2e para testar o fluxo completo das operações.
 
 ## 💻 Como rodar o projeto
 Para utilizar e testar o projeto, esteja em um computador com Node Js instalado e siga as
