@@ -42,7 +42,10 @@ todas as atividades realizadas em cada dia de desenvolvimento do projeto.
 Para utilizar e testar o projeto, esteja em um computador com Node Js instalado e siga as
 etapas abaixo:
 
-- OBS: necessário node 18 instalado na máquina.
+- OBS: 
+    * Necessário node 18 instalado na máquina.
+    * Caso retorne algum problema com cors, instale e ative a extensão `Allow CORS: Access-Control-Allow-Origin`
+    disponível na chrome web store.
 
 1 Clone o projeto com o comando
 ```
