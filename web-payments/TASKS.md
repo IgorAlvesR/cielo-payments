@@ -19,3 +19,13 @@
 - [x] - Refatora alguns componentes para melhorar legibilidade.
 - [x] - Cria um card para visualizar resumo das transações.
 - [x] - Cria um gráfico de pizza para visualizar a quantidade de cada bandeira utilizada.
+
+## 🚀 Tarefas do dia 28/09/2023
+- [x] - Cria testes para o modal que exibe os detalhes da transação.
+- [x] - Melhora responsividade.
+- [x] - Melhorias na estrutura do modal que exibe detalhes da transação.
+- [x] - Cria gráfico de pizza com a contagem dos status do histórico de transações.
+- [x] - Cria testes para o componente de paginação.
+- [x] - Exibe rota ativa com uma cor diferente.
+- [x] - Melhora documentação.
+- [x] - Melhora cor de fundo no tema claro.
