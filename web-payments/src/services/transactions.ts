@@ -26,9 +26,9 @@ export type getSummaryResponse = {
 
 export async function getTransactions(): Promise<getTransactionResponse> {
   try {
-    const { data } = await client.get('/items')
+    const { data, status } = await client.get('/items')
     return {
-      status: 200,
+      status,
       data: {
         transactions: data,
       },
@@ -41,9 +41,9 @@ export async function getTransactions(): Promise<getTransactionResponse> {
 
 export async function getPagination(): Promise<getPaginationResponse> {
   try {
-    const { data } = await client.get('/pagination')
+    const { data, status } = await client.get('/pagination')
     return {
-      status: 200,
+      status,
       data: {
         pagination: data,
       },

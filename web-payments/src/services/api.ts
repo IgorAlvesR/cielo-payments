@@ -1,10 +1,10 @@
-import axios from 'axios'
+import axios, { AxiosInstance } from 'axios'
+
+let instance: AxiosInstance
 
 export function getInstanceHttpClient() {
-  let instance
   if (!instance) {
     instance = axios.create({ baseURL: import.meta.env.VITE_API_URL })
   }
-
   return instance
 }
