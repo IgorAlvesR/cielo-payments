@@ -5,11 +5,11 @@ import { SkeletonPagination } from '@/components/SkeletonPagination'
 import { TableTransactions } from '@/components/TableTransactions'
 import useFetch from '@/hooks/useFetch'
 import {
+  GetPaginationResponse,
+  GetSummaryResponse,
+  GetTransactionResponse,
   getPagination,
-  getPaginationResponse,
   getSummary,
-  getSummaryResponse,
-  getTransactionResponse,
   getTransactions,
 } from '@/services/transactions'
 import { Transaction } from '@/types'
@@ -36,17 +36,17 @@ export function Home() {
     : null
 
   function transformTransactionResponseFetch(data: unknown) {
-    const response = data as getTransactionResponse
+    const response = data as GetTransactionResponse
     return response.data.transactions
   }
 
   function transformPaginationResponseFetch(data: unknown) {
-    const response = data as getPaginationResponse
+    const response = data as GetPaginationResponse
     return response.data.pagination
   }
 
   function transformSummaryResponseFetch(data: unknown) {
-    const response = data as getSummaryResponse
+    const response = data as GetSummaryResponse
     return response.data.summary
   }
 

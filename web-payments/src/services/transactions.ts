@@ -3,28 +3,28 @@ import { getInstanceHttpClient } from './api'
 
 const client = getInstanceHttpClient()
 
-export type getTransactionResponse = {
+export type GetTransactionResponse = {
   status: number
   data: {
     transactions: Transaction[]
   }
 }
 
-export type getPaginationResponse = {
+export type GetPaginationResponse = {
   status: number
   data: {
     pagination: Pagination
   }
 }
 
-export type getSummaryResponse = {
+export type GetSummaryResponse = {
   status: number
   data: {
     summary: Summary
   }
 }
 
-export async function getTransactions(): Promise<getTransactionResponse> {
+export async function getTransactions(): Promise<GetTransactionResponse> {
   try {
     const { data, status } = await client.get('/items')
     return {
@@ -39,7 +39,7 @@ export async function getTransactions(): Promise<getTransactionResponse> {
   }
 }
 
-export async function getPagination(): Promise<getPaginationResponse> {
+export async function getPagination(): Promise<GetPaginationResponse> {
   try {
     const { data, status } = await client.get('/pagination')
     return {
@@ -54,7 +54,7 @@ export async function getPagination(): Promise<getPaginationResponse> {
   }
 }
 
-export async function getSummary(): Promise<getSummaryResponse> {
+export async function getSummary(): Promise<GetSummaryResponse> {
   try {
     const { data } = await client.get('/summary')
     return {
