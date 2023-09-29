@@ -3,7 +3,7 @@ import { PieChartStatus } from '@/components/PieChartStatus'
 import { useTheme } from '@/components/ThemeProvider'
 import useFetch from '@/hooks/useFetch'
 import {
-  getTransactionResponse,
+  GetTransactionResponse,
   getTransactions,
 } from '@/services/transactions'
 import { CardBrandsReport, StatusReport, Transaction } from '@/types'
@@ -48,7 +48,7 @@ export function Metrics() {
     )
   }
 
-  const response = transactionResponse.data as getTransactionResponse
+  const response = transactionResponse.data as GetTransactionResponse
 
   const cardBrandsReport = transactionResponse?.data
     ? getBrandsFilter(response.data.transactions)
