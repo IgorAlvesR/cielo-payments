@@ -51,15 +51,10 @@ export interface Summary {
   finalDate: string
 }
 
-export interface BrandsCount {
-  mastercardCount: number
-  visaCount: number
-  eloCount: number
-  hipercardCount: number
+export type CardBrandsReport = {
+  [key: string]: number
 }
 
-export interface StatusCount {
-  approvedCount: number
-  deniedCount: number
-  pending: number
+export type CardStatusReport = {
+  [key: string]: number
 }

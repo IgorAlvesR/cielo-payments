@@ -1,29 +1,24 @@
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js'
 import { Pie } from 'react-chartjs-2'
 import { SkeletonChart } from './SkeletonChart '
-import { BrandsCount } from '@/types'
+import { CardBrandsReport } from '@/types'
 
 ChartJS.register(ArcElement, Tooltip, Legend)
 
 interface PieChartBrandProps {
   loading: boolean
-  data?: BrandsCount | null
+  data?: CardBrandsReport | null
 }
 
 export function PieChartBrand({ loading, data }: PieChartBrandProps) {
   let dataPie
   if (data) {
     dataPie = {
-      labels: ['Elo', 'Mastercard', 'Visa', 'Hipercard'],
+      labels: Object.keys(data),
       datasets: [
         {
           label: 'Total transações',
-          data: [
-            data.eloCount,
-            data.mastercardCount,
-            data.visaCount,
-            data.hipercardCount,
-          ],
+          data: Object.values(data),
           backgroundColor: [
             'rgba(255, 99, 132, 0.6)',
             'rgba(54, 162, 235, 0.6)',

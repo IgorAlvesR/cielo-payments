@@ -5,64 +5,33 @@ import {
   getTransactionResponse,
   getTransactions,
 } from '@/services/transactions'
-import {
-  BrandsCount,
-  StatusCount,
-  StatusTransaction,
-  Transaction,
-} from '@/types'
+import { CardBrandsReport, CardStatusReport, Transaction } from '@/types'
 
 export function Metrics() {
-  function getBrandsFilter(transactions: Transaction[]): BrandsCount {
-    const brands = {
-      MASTERCARD: [] as string[],
-      VISA: [] as string[],
-      ELO: [] as string[],
-      HIPERCARD: [] as string[],
-    }
+  function getBrandsFilter(transactions: Transaction[]) {
+    const totalizers: CardBrandsReport = {}
 
     transactions.forEach((transaction) => {
-      if (transaction.cardBrand === 'Mastercard') {
-        brands.MASTERCARD.push(transaction.cardBrand)
-      } else if (transaction.cardBrand === 'Visa') {
-        brands.VISA.push(transaction.cardBrand)
-      } else if (transaction.cardBrand === 'Hipercard') {
-        brands.HIPERCARD.push(transaction.cardBrand)
+      if (!totalizers[transaction.cardBrand]) {
+        totalizers[transaction.cardBrand] = 1
       } else {
-        brands.ELO.push(transaction.cardBrand)
+        totalizers[transaction.cardBrand] += 1
       }
     })
-
-    return {
-      mastercardCount: brands.MASTERCARD.length,
-      visaCount: brands.VISA.length,
-      eloCount: brands.ELO.length,
-      hipercardCount: brands.MASTERCARD.length,
-    }
+    return totalizers
   }
 
-  function getStatusFilter(transactions: Transaction[]): StatusCount {
-    const status = {
-      APPROVED: [] as string[],
-      DENIED: [] as string[],
-      PENDING: [] as string[],
-    }
+  function getStatusFilter(transactions: Transaction[]) {
+    const totalizers: CardStatusReport = {}
 
     transactions.forEach((transaction) => {
-      if (transaction.status === StatusTransaction.DENIED) {
-        status.DENIED.push(transaction.status)
-      } else if (transaction.status === StatusTransaction.PENDING) {
-        status.PENDING.push(transaction.status)
+      if (!totalizers[transaction.status]) {
+        totalizers[transaction.status] = 1
       } else {
-        status.APPROVED.push(transaction.status)
+        totalizers[transaction.status] += 1
       }
     })
-
-    return {
-      approvedCount: status.APPROVED.length,
-      deniedCount: status.DENIED.length,
-      pending: status.PENDING.length,
-    }
+    return totalizers
   }
 
   const transactionResponse = useFetch(getTransactions)
@@ -77,11 +46,11 @@ export function Metrics() {
 
   const response = transactionResponse.data as getTransactionResponse
 
-  const brandsCount = transactionResponse?.data
+  const cardBrandsReport = transactionResponse?.data
     ? getBrandsFilter(response.data.transactions)
     : null
 
-  const statusCount = transactionResponse.data
+  const cardStatusReport = transactionResponse.data
     ? getStatusFilter(response.data.transactions)
     : null
 
@@ -89,14 +58,14 @@ export function Metrics() {
     <div className="rounded-sm bg-white shadow-sm border dark:border-none dark:bg-zinc-800  py-12 px-4 sm:px-8 flex justify-center gap-6 flex-col lg:flex-row ">
       <div className="flex-1 shadow-sm border border-zinc-50 p-4 bg-zinc-100  rounded-sm flex justify-center items-center dark:bg-white dark:border-none ">
         <PieChartBrand
-          data={brandsCount}
+          data={cardBrandsReport}
           loading={transactionResponse.loading}
         />
       </div>
 
       <div className="flex-1 shadow-sm border border-zinc-50 p-4 bg-zinc-100  rounded-sm flex justify-center items-center dark:bg-white dark:border-none ">
         <PieChartStatus
-          data={statusCount}
+          data={cardStatusReport}
           loading={transactionResponse.loading}
         />
       </div>
