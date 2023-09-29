@@ -46,7 +46,7 @@ export function TableTransactions({
   }
 
   return (
-    <div className="p-6 shadow-sm border border-zinc-100 dark:border-none rounded-sm dark:bg-zinc-900">
+    <div className="p-6 shadow-sm border border-zinc-150 dark:border-none rounded-sm dark:bg-zinc-900">
       <h1 className="text-lg font-semibold text-zinc-800 dark:text-zinc-50 pb-4 pt-2 px-4">
         Histórico de transações
       </h1>
