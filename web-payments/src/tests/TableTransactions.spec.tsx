@@ -1,10 +1,10 @@
-import { expect, describe } from 'vitest'
-import { render, screen } from '@testing-library/react'
+import { expect, describe, vi } from 'vitest'
+import { fireEvent, render, screen } from '@testing-library/react'
 import '@testing-library/jest-dom'
 import { TableTransactions } from '@/components/TableTransactions'
 import { StatusTransaction, Transaction } from '@/types'
 
-function renderComponent() {
+function renderComponent(mockClickRow?: () => void) {
   const transactions: Transaction[] = [
     {
       id: '114606514478703',
@@ -52,7 +52,10 @@ function renderComponent() {
     },
   ]
   render(
-    <TableTransactions transactions={transactions} onClickRow={() => {}} />,
+    <TableTransactions
+      transactions={transactions}
+      onClickRow={() => mockClickRow?.() || vi.fn()}
+    />,
   )
 }
 
@@ -79,5 +82,13 @@ describe('TableTransaction test', () => {
     expect(tColumn[2]).toBeInTheDocument()
     expect(tColumn[3]).toBeInTheDocument()
     expect(tColumn[4]).toBeInTheDocument()
+  })
+
+  it('Deve esperar que tenha ao menos um click na linha da tabela', () => {
+    const mockClickRow = vi.fn()
+    renderComponent(mockClickRow)
+    const tRow = screen.getAllByTestId('table-transaction-row')
+    fireEvent.click(tRow[0])
+    expect(mockClickRow).toHaveBeenCalledTimes(1)
   })
 })
