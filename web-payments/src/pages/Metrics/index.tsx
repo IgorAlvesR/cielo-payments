@@ -12,7 +12,8 @@ export function Metrics() {
   const { theme } = useTheme()
   const labelColorPieChart = theme === 'dark' ? '#fff' : '#000'
 
-  const transactionResponse = useFetch(getTransactions)
+  const { response, error, loading } =
+    useFetch<GetTransactionResponse>(getTransactions)
 
   function getBrandsFilter(transactions: Transaction[]) {
     const totalizers: CardBrandsReport = {}
@@ -40,7 +41,7 @@ export function Metrics() {
     return totalizers
   }
 
-  if (transactionResponse.error) {
+  if (error) {
     return (
       <p className="text-center text-zinc-600 dark:text-zinc-300">
         Não foi possível carregar o histórico de transações.
@@ -48,13 +49,11 @@ export function Metrics() {
     )
   }
 
-  const response = transactionResponse.data as GetTransactionResponse
-
-  const cardBrandsReport = transactionResponse?.data
+  const cardBrandsReport = response?.data
     ? getBrandsFilter(response.data.transactions)
     : null
 
-  const statusReport = transactionResponse.data
+  const statusReport = response?.data
     ? getStatusFilter(response.data.transactions)
     : null
 
@@ -72,7 +71,7 @@ export function Metrics() {
         <div className="flex-1 shadow-sm border border-zinc-50 bg-zinc-100 rounded-sm flex justify-center items-center dark:bg-zinc-800 dark:border-none">
           <PieChartBrand
             data={cardBrandsReport}
-            loading={transactionResponse.loading}
+            loading={loading}
             labelColor={labelColorPieChart}
           />
         </div>
@@ -80,7 +79,7 @@ export function Metrics() {
         <div className="flex-1 shadow-sm border border-zinc-50 p-4 bg-zinc-100  rounded-sm flex justify-center items-center dark:bg-zinc-800 dark:border-none ">
           <PieChartStatus
             data={statusReport}
-            loading={transactionResponse.loading}
+            loading={loading}
             labelColor={labelColorPieChart}
           />
         </div>

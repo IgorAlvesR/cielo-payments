@@ -1,16 +1,24 @@
 import { useState, useEffect } from 'react'
 
-export default function useFetch(serviceFn: () => unknown) {
+export type FetchResponse<T> = {
+  response: T | null
+  loading: boolean
+  error: Error | null
+}
+
+export default function useFetch<T>(
+  serviceFn: () => Promise<T>,
+): FetchResponse<T> {
   let isMounted = true
-  const [data, setData] = useState<unknown | null>(null)
+  const [response, setResponse] = useState<T | null>(null)
   const [loading, setLoading] = useState<boolean>(true)
   const [error, setError] = useState<Error | null>(null)
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await serviceFn()
-        setData(response)
+        const serviceResponse = await serviceFn()
+        setResponse(serviceResponse)
         setLoading(false)
       } catch (error) {
         if (error instanceof Error) {
@@ -30,5 +38,5 @@ export default function useFetch(serviceFn: () => unknown) {
     }
   }, [])
 
-  return { data, loading, error }
+  return { response, loading, error }
 }

@@ -19,36 +19,9 @@ export function Home() {
   const [openModalTransaction, setOpenModalTransaction] = useState(false)
   const [transactionDetails, setTransactionDetails] = useState<Transaction>()
 
-  const transactionsResponse = useFetch(getTransactions)
-  const paginationResponse = useFetch(getPagination)
-  const transactionSummaryResponse = useFetch(getSummary)
-
-  const transactionsTransformed = transactionsResponse.data
-    ? transformTransactionResponseFetch(transactionsResponse.data)
-    : null
-
-  const paginatioonTransformed = paginationResponse.data
-    ? transformPaginationResponseFetch(paginationResponse.data)
-    : null
-
-  const transactionSummaryTransformed = transactionSummaryResponse.data
-    ? transformSummaryResponseFetch(transactionSummaryResponse.data)
-    : null
-
-  function transformTransactionResponseFetch(data: unknown) {
-    const response = data as GetTransactionResponse
-    return response.data.transactions
-  }
-
-  function transformPaginationResponseFetch(data: unknown) {
-    const response = data as GetPaginationResponse
-    return response.data.pagination
-  }
-
-  function transformSummaryResponseFetch(data: unknown) {
-    const response = data as GetSummaryResponse
-    return response.data.summary
-  }
+  const transactionsResponse = useFetch<GetTransactionResponse>(getTransactions)
+  const paginationResponse = useFetch<GetPaginationResponse>(getPagination)
+  const transactionSummaryResponse = useFetch<GetSummaryResponse>(getSummary)
 
   function openTransactionModalDetails(transaction: Transaction) {
     setTransactionDetails(transaction)
@@ -59,8 +32,8 @@ export function Home() {
     if (paginationResponse.loading) {
       return <SkeletonPagination />
     }
-    if (paginatioonTransformed) {
-      return <Pagination data={paginatioonTransformed} />
+    if (paginationResponse.response?.data) {
+      return <Pagination data={paginationResponse.response.data.pagination} />
     }
     return null
   }
@@ -76,12 +49,12 @@ export function Home() {
   return (
     <section className="space-y-12 mt-44 sm:mt-auto">
       <CardSummary
-        data={transactionSummaryTransformed}
+        data={transactionSummaryResponse.response?.data.summary}
         loading={transactionSummaryResponse.loading}
       />
       <TableTransactions
         loading={transactionSummaryResponse.loading}
-        transactions={transactionsTransformed}
+        transactions={transactionsResponse.response?.data.transactions}
         onClickRow={openTransactionModalDetails}
       >
         <PaginationContainer />
