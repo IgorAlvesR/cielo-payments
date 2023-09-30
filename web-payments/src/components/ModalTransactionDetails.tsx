@@ -21,8 +21,8 @@ interface ModalDetailProps {
 
 function ModalDetail({ label, value }: ModalDetailProps) {
   return (
-    <section className="flex items-center justify-between">
-      <span className="text-zinc-400 dark:text-zinc-50 font-semibold dark:font-medium">
+    <section className="flex items-center justify-between text-xs sm:text-sm">
+      <span className="text-zinc-700 dark:text-zinc-50  dark:font-medium">
         {label}
       </span>
       <span className=" text-zinc-600 font-semibold dark:font-medium  dark:text-zinc-50 ">
@@ -40,7 +40,7 @@ export function ModalTransactionDetails({
   return (
     <Dialog modal open={open} onOpenChange={(value) => setOpen(!value)}>
       <DialogContent>
-        <DialogHeader>
+        <DialogHeader className="mb-4">
           <DialogTitle>Detalhes da transação</DialogTitle>
           <DialogDescription>
             Veja mais informações sobre a transação realizada
